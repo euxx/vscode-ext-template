@@ -4,6 +4,7 @@ node_modules/
 # Build
 *.vsix
 out/
+coverage/
 
 # IDE / OS
 .DS_Store
