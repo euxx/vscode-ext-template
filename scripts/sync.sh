@@ -17,6 +17,7 @@ SHARED_FILES=(
   ".gitignore"
   ".prettierrc"
   ".prettierignore"
+  ".vscode/launch.json"
   "AGENTS.md"
   ".vscodeignore"
   "DEVELOPMENT.md"
