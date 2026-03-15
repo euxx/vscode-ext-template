@@ -52,6 +52,11 @@ When shared config files change, run the sync script for each extension:
 
 ```bash
 ./scripts/sync.sh /path/to/my-extension
+
+./scripts/sync.sh ~/projects/editor-tweaks
+./scripts/sync.sh ~/projects/github-copilot-usage
+./scripts/sync.sh ~/projects/github-copilot-buddy
+./scripts/sync.sh ~/projects/claude-skills-for-copilot
 ```
 
 The script shows a diff for each changed file and asks for confirmation before copying.
