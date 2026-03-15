@@ -12,7 +12,6 @@ TARGET_DIR="$(cd "$TARGET_DIR" && pwd)"
 
 SHARED_FILES=(
   "eslint.config.mjs"
-  "vitest.config.mjs"
   ".husky/pre-commit"
   ".gitignore"
   ".prettierrc"
