@@ -99,6 +99,18 @@ sync_yes "$dir" > /dev/null
 [ -f "$dir/DEVELOPMENT.md" ] && ok "DEVELOPMENT.md created in empty project" || fail "DEVELOPMENT.md not created"
 echo ""
 
+# ── 7. 'a' applies all remaining diffs without further prompting ───────────────
+echo "7. 'a' applies all remaining changes"
+mktest
+# Create targets: AGENTS.md is stale, DEVELOPMENT.md is stale
+echo "old AGENTS" > "$dir/AGENTS.md"
+echo "old DEVELOPMENT" > "$dir/DEVELOPMENT.md"
+# Answer 'a' to the first prompt — all subsequent diffs should auto-apply
+printf 'a\n' | bash "$SYNC_SH" "$dir" > /dev/null
+assert_files_equal "AGENTS.md applied via 'a'" "$TEMPLATE_DIR/AGENTS.md" "$dir/AGENTS.md"
+assert_files_equal "DEVELOPMENT.md applied via 'a'" "$TEMPLATE_DIR/DEVELOPMENT.md" "$dir/DEVELOPMENT.md"
+echo ""
+
 # ── Summary ────────────────────────────────────────────────────────────────────
 echo "Results: $pass passed, $fail failed"
 if [[ $fail -gt 0 ]]; then

@@ -21,6 +21,8 @@ SHARED_FILES=(
   ".vscodeignore"
   "DEVELOPMENT.md"
   "RELEASE.md"
+  ".github/workflows/ci.yml"
+  ".github/workflows/release.yml"
 )
 
 MARKER="<!-- END-SHARED -->"
@@ -33,6 +35,7 @@ echo ""
 
 copied=0
 skipped=0
+apply_all=false
 
 for f in "${SHARED_FILES[@]}"; do
   src="$TEMPLATE_DIR/$f"
@@ -53,7 +56,12 @@ for f in "${SHARED_FILES[@]}"; do
 
   if [ ! -f "$dst" ]; then
     echo "[ NEW  ] $f"
-    read -rp "Copy? (y/N) " confirm
+    if $apply_all; then
+      confirm="y"
+    else
+      read -rp "Copy? (y/a/N) " confirm
+      [[ "$confirm" == "a" || "$confirm" == "A" ]] && apply_all=true && confirm="y"
+    fi
     if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
       mkdir -p "$(dirname "$dst")"
       cp "$tmpfile" "$dst"
@@ -67,7 +75,12 @@ for f in "${SHARED_FILES[@]}"; do
     echo "[ DIFF ] $f"
     diff --color=always "$dst" "$tmpfile" || true
     echo ""
-    read -rp "Apply? (y/N) " confirm
+    if $apply_all; then
+      confirm="y"
+    else
+      read -rp "Apply? (y/a/N) " confirm
+      [[ "$confirm" == "a" || "$confirm" == "A" ]] && apply_all=true && confirm="y"
+    fi
     if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
       cp "$tmpfile" "$dst"
       echo "Updated: $f"
