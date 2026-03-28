@@ -6,7 +6,7 @@ Template repository for VS Code extensions. Contains shared tooling configuratio
 
 | File                            | Purpose                                                    |
 | ------------------------------- | ---------------------------------------------------------- |
-| `eslint.config.mjs`             | ESLint rules (CommonJS, node globals, prettier-compatible) |
+| `.oxlintrc.json` (optional)     | oxlint rules (zero-config by default)                      |
 | `vitest.config.mjs`             | Vitest base config (node environment, globals enabled)     |
 | `.husky/pre-commit`             | Pre-commit hook: runs lint-staged                          |
 | `package.json`                  | Scripts + devDependencies reference                        |
