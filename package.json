@@ -1,19 +1,17 @@
 {
   "name": "extension-name",
   "displayName": "Extension Display Name",
-  "description": "Short description.",
   "version": "0.1.0",
-  "publisher": "PUBLISHER",
-  "license": "MIT",
-  "icon": "images/icon.png",
-  "engines": {
-    "vscode": "^1.85.0"
-  },
+  "description": "Short description.",
   "categories": [],
   "keywords": [],
-  "activationEvents": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PUBLISHER/extension-name"
+  },
+  "publisher": "PUBLISHER",
   "main": "./src/extension.js",
-  "contributes": {},
   "scripts": {
     "vscode:prepublish": "npm run ci",
     "ci": "npm run test && npm run lint && npm run format:check",
@@ -33,14 +31,17 @@
     "vitest": "latest"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "prettier --write"
+    "*.{js,html,css,md,yml,yaml,json}": [
+      "oxfmt --write"
     ],
-    "*.{json,md}": "prettier --write"
+    "*.js": [
+      "oxlint"
+    ]
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/PUBLISHER/extension-name"
+  "contributes": {},
+  "activationEvents": [],
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
   }
 }

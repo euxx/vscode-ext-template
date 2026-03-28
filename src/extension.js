@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * Called when the extension is activated.
