@@ -4,18 +4,18 @@ Template repository for VS Code extensions. Contains shared tooling configuratio
 
 ## What's Shared
 
-| File                            | Purpose                                                |
-| ------------------------------- | ------------------------------------------------------ |
-| `.oxlintrc.json` (optional)     | oxlint rules (zero-config by default)                  |
-| `vitest.config.mjs`             | Vitest base config (node environment, globals enabled) |
-| `.husky/pre-commit`             | Pre-commit hook: runs lint-staged                      |
-| `package.json`                  | Scripts + devDependencies reference                    |
-| `AGENTS.md`                     | Copilot agent conventions                              |
-| `DEVELOPMENT.md`                | Development setup and scripts                          |
-| `RELEASE.md`                    | Release process                                        |
-| `CHANGELOG.md`                  | Changelog format (initial structure only)              |
-| `.github/workflows/release.yml` | GitHub release workflow                                |
-| `LICENSE`                       | MIT license template                                   |
+| File                            | Purpose                                |
+| ------------------------------- | -------------------------------------- |
+| `.husky/pre-commit`             | Pre-commit hook: runs lint-staged      |
+| `.gitignore`                    | Ignore patterns for git                |
+| `.oxlintrc.json` (optional)     | oxlint rules (zero-config by default)  |
+| `.vscode/launch.json`           | VS Code debug launch configuration     |
+| `AGENTS.md`                     | Copilot agent conventions              |
+| `.vscodeignore`                 | Files excluded from packaged extension |
+| `DEVELOPMENT.md`                | Development setup and scripts          |
+| `RELEASE.md`                    | Release process                        |
+| `.github/workflows/ci.yml`      | GitHub CI workflow                     |
+| `.github/workflows/release.yml` | GitHub release workflow                |
 
 ## Creating a New Extension
 
