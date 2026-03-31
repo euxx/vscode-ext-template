@@ -2,7 +2,7 @@
 
 /**
  * Called when the extension is activated.
- * @param {vscode.ExtensionContext} context
+ * @param {vscode.ExtensionContext} _context
  */
 function activate(_context) {
   // TODO: register commands, event listeners, etc.
