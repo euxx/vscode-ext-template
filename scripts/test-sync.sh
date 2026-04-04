@@ -111,6 +111,18 @@ assert_files_equal "AGENTS.md applied via 'a'" "$TEMPLATE_DIR/AGENTS.md" "$dir/A
 assert_files_equal "DEVELOPMENT.md applied via 'a'" "$TEMPLATE_DIR/DEVELOPMENT.md" "$dir/DEVELOPMENT.md"
 echo ""
 
+# ── 8. No-marker template + target with marker: project section preserved ──────
+echo "8. No-marker template, target has marker: project section preserved"
+mktest
+# Build target: template content (no marker in template) + marker + project section
+cat "$TEMPLATE_DIR/AGENTS.md" > "$dir/AGENTS.md"
+printf '\n%s\n\n## Custom Notes\n\nproject-only content\n' "<!-- END-SHARED -->" >> "$dir/AGENTS.md"
+sync_yes "$dir" > /dev/null
+assert_contains "Marker preserved in target" "$dir/AGENTS.md" "<!-- END-SHARED -->"
+assert_contains "Project section preserved" "$dir/AGENTS.md" "project-only content"
+assert_contains "Template content present" "$dir/AGENTS.md" "npm run ci"
+echo ""
+
 # ── Summary ────────────────────────────────────────────────────────────────────
 echo "Results: $pass passed, $fail failed"
 if [[ $fail -gt 0 ]]; then
