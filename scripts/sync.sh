@@ -43,17 +43,17 @@ for f in "${SHARED_FILES[@]}"; do
   # Build effective content: shared section from template + project section from target
   if grep -qF "$MARKER" "$src"; then
     # Template has marker: take shared section (up to and including marker line)
-    awk '{print} index($0, "<!-- END-SHARED -->"){exit}' "$src" > "$tmpfile"
+    awk -v marker="$MARKER" '{print} index($0, marker){exit}' "$src" > "$tmpfile"
     # Append project-specific section (lines after marker in target)
     if [ -f "$dst" ] && grep -qF "$MARKER" "$dst"; then
-      awk 'found{print} index($0,"<!-- END-SHARED -->"){found=1}' "$dst" >> "$tmpfile"
+      awk -v marker="$MARKER" 'found{print} index($0, marker){found=1}' "$dst" >> "$tmpfile"
     fi
   elif [ -f "$dst" ] && grep -qF "$MARKER" "$dst"; then
     # Template has no marker, but target does: use full template as shared content,
     # then re-attach the marker and the project-specific section from target
     cat "$src" > "$tmpfile"
     printf '\n%s\n' "$MARKER" >> "$tmpfile"
-    awk 'found{print} index($0,"<!-- END-SHARED -->"){found=1}' "$dst" >> "$tmpfile"
+    awk -v marker="$MARKER" 'found{print} index($0, marker){found=1}' "$dst" >> "$tmpfile"
   else
     cp "$src" "$tmpfile"
   fi
