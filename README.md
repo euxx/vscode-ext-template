@@ -55,7 +55,6 @@ When shared config files change, run the sync script for each extension:
 
 ./scripts/sync.sh ~/projects/editor-tweaks
 ./scripts/sync.sh ~/projects/github-copilot-usage
-./scripts/sync.sh ~/projects/github-copilot-buddy
 ./scripts/sync.sh ~/projects/claude-skills-for-copilot
 ```
 
